@@ -1,15 +1,28 @@
 from decorator.input_error import input_error
+from models.address_book import AddressBook
+from models.record import Record
 
 
 @input_error
-def add_contact(args, contacts):
+def add_contact(args, contacts_book):
     name, phone = args
 
-    if name in contacts.keys():
-        return (f"ERROR: Contact {name} is already exist ")
+    # if name in contacts.keys():
+    #     return (f"ERROR: Contact {name} is already exist ")
 
-    if phone in contacts.values():
-        return (f"ERROR: Phone {phone} has another contact ")
+    # if phone in contacts.values():
+    #     return (f"ERROR: Phone {phone} has another contact ")
 
-    contacts[name] = phone
+    # contacts[name] = phone
+    # return "Contact added."
+
+    contact = contacts_book.find_record(name)
+
+    if contact == None:
+        record = Record(name)
+        record.add_phone(phone)
+        contacts_book.add_record(record)
+    else:
+        contact.add_phone(phone)
+
     return "Contact added."

@@ -45,7 +45,7 @@ class AddressBook(UserDict):
         # search contact by name
 
         # Створення нової адресної книги
-book = AddressBook("someDate")
+book = AddressBook()
 print(book)
 
 
