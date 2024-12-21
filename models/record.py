@@ -13,15 +13,17 @@ class Record:
     def remove_phone():
         pass
 
-    def edit_phone():
-        pass
+    def edit_phone(self, old_phone, new_phone):
+        idx = next((idx for idx, phone in enumerate(
+            self.phones) if phone.value == old_phone), None)
 
-    def find_phone(self, phone):
-        result = (phone for phone in self.phones if phone.value == phone)
+        if idx == None:
+            raise IndexError("Index not find")
+        self.phones[idx] = Phone(new_phone)
 
-        if not result:
-            raise ValueError
-        return result
+    def find_phone(self, searched_phone):
+        return next(
+            (phone for phone in self.phones if phone.value == searched_phone), None)
 
     def __str__(self):
         return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"

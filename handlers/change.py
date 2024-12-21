@@ -2,24 +2,17 @@ from decorator.input_error import input_error
 
 
 @input_error
-def change_contact(args, contacts):
+def change_contact(args, address_book):
+    name, old_phone, new_phone = args
 
-    # for key, value in contacts.items():
-    #     if key == args[0]:
-    #         print(f"WARNING! You are going to change phone {args[0]}?")
-    #         user_answer = input(
-    #             "for change press Y or N for cancel: ").strip().lower()
+    record = address_book.find_record(name)
 
-    #         if user_answer == "y":
-    #             contacts[args[0]] = args[1]
-    #             return "Contact updated."
+    if not record:
+        raise KeyError("f{name} doesn't exist in contacts")
 
-    #         return f"You refused to update {args[0]} number"
+    if not record.find_phone(old_phone):
+        raise ValueError("f{old_phone} doesn't exist in {name}")
 
-    name, new_phone = args
+    record.edit_phone(old_phone, new_phone)
 
-    if not name in contacts:
-        raise KeyError(f"There is no contact with name {name}")
-    contacts[name] = new_phone
-
-    return f"Contact: {name} changed."
+    return "Contact updated"
