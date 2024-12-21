@@ -2,5 +2,5 @@ from models.field import Field
 
 
 class Name(Field):
-    # реалізація класу
-    pass
+    def __init__(self, value):
+        super().__init__(value)

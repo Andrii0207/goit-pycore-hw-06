@@ -16,8 +16,12 @@ class Record:
     def edit_phone():
         pass
 
-    def find_phone():
-        pass
+    def find_phone(self, phone):
+        result = (phone for phone in self.phones if phone.value == phone)
+
+        if not result:
+            raise ValueError
+        return result
 
     def __str__(self):
         return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"

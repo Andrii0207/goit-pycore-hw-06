@@ -4,8 +4,14 @@ from models.record import Record
 
 
 @input_error
-def add_contact(args, contacts_book):
+def add_contact(args, address_book):
+
+    if len(args) != 2:
+        raise ValueError("It must be two arguments")
+
     name, phone = args
+
+    # contacts[name] = phone
 
     # if name in contacts.keys():
     #     return (f"ERROR: Contact {name} is already exist ")
@@ -16,12 +22,14 @@ def add_contact(args, contacts_book):
     # contacts[name] = phone
     # return "Contact added."
 
-    contact = contacts_book.find_record(name)
+    # ========================================
+
+    contact = address_book.find_record(name)
 
     if contact == None:
         record = Record(name)
         record.add_phone(phone)
-        contacts_book.add_record(record)
+        address_book.add_record(record)
     else:
         contact.add_phone(phone)
 

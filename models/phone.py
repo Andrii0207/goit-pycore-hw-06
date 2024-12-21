@@ -2,7 +2,6 @@ from models.field import Field
 
 
 class Phone(Field):
-
     def __init__(self, value):
         super().__init__(value)
 
@@ -10,6 +9,5 @@ class Phone(Field):
         return self.value
 
     def __validate(self, value):
-        print("len value: ", len(value))
         if len(value) != 10:
             raise ValueError("Phone number must have 10 digits")

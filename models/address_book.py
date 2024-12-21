@@ -9,3 +9,17 @@ class AddressBook(UserDict):
     def find_record(self, name):
         if name in self.data:
             return self.data[name]
+
+    def show_all(self):
+        contact_list = []
+
+        for name, record in self.data.items():
+            contact = dict()
+            contact[name] = [phone.value for phone in record.phones]
+            contact_list.append(contact)
+
+        return contact_list
+
+    def delete(self, name):
+        if name in self.data:
+            del self.data[name]
