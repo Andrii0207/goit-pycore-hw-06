@@ -23,3 +23,8 @@ class AddressBook(UserDict):
     def delete(self, name):
         if name in self.data:
             del self.data[name]
+
+    def remove_phone(self, deleted_phone):
+        print("remove_phone: ", deleted_phone)
+        # next(
+        #     (phone for phone in self.phones if phone.value == deleted_phone), None)

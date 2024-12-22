@@ -10,8 +10,13 @@ class Record:
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
 
-    def remove_phone():
-        pass
+    def remove_phone(self, deleted_phone):
+        idx = next((idx for idx, phone in enumerate(
+            self.phones) if phone.value == deleted_phone), None)
+
+        if idx == None:
+            raise IndexError("Index not find")
+        self.phones.remove(self.phones[idx])
 
     def edit_phone(self, old_phone, new_phone):
         idx = next((idx for idx, phone in enumerate(

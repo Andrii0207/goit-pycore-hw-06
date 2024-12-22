@@ -11,19 +11,6 @@ def add_contact(args, address_book):
 
     name, phone = args
 
-    # contacts[name] = phone
-
-    # if name in contacts.keys():
-    #     return (f"ERROR: Contact {name} is already exist ")
-
-    # if phone in contacts.values():
-    #     return (f"ERROR: Phone {phone} has another contact ")
-
-    # contacts[name] = phone
-    # return "Contact added."
-
-    # ========================================
-
     contact = address_book.find_record(name)
 
     if contact == None:

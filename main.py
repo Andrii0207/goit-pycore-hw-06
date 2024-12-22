@@ -1,5 +1,5 @@
 from parser import parse_input
-from handlers import add, all_contacts, change, show, delete
+from handlers import add, all_contacts, change, remove, show, delete, remove
 from models.address_book import AddressBook
 from models.record import Record
 
@@ -7,17 +7,18 @@ from models.record import Record
 def main():
     contacts_book = AddressBook()
 
-    record1_init = Record("Alex")
-    record1_init.add_phone("0671234567")
-    record1_init.add_phone("0501234567")
+    record1_init = Record("John")
+    record1_init.add_phone("1234567890")
+    record1_init.add_phone("5555555555")
+    record1_init.add_phone("1122334455")
     contacts_book.add_record(record1_init)
 
-    record2_init = Record("Oleg")
-    record2_init.add_phone("0981112233")
+    record2_init = Record("Jane")
+    record2_init.add_phone("9876543210")
     contacts_book.add_record(record2_init)
 
-    record3_init = Record("Vitaly")
-    record3_init.add_phone("0662223344")
+    record3_init = Record("Sarah")
+    record3_init.add_phone("0987654321")
     contacts_book.add_record(record3_init)
 
     print("Welcome to the assistant bot!")
@@ -46,6 +47,10 @@ def main():
 
         elif command == "delete":
             print(delete.delete_contact(args, contacts_book))
+
+        elif command == "remove":
+            print(remove.remove_phone(args, contacts_book))
+
         else:
             print("Invalid command.")
 
